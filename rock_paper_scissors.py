@@ -37,11 +37,11 @@ class Round:
         ]
 
         self.adjectives = [
-            [None, None, "Crushes", "Smashes", None],
-            ["Covers", None, None, None, "Disproves"],
-            [None, "Cuts", None, "decapitates", None],
-            [None, "Eats", None, None, "Poisons"],
-            ["Vaporizes", None, "breaks", None, None]
+            [None, "covers", "crushes", "smashes", "vaporizes"],
+            ["covers", None, "cuts", "eats", "disproves"],
+            ["crushes", "cuts", None, "decapitates", "breaks"],
+            ["smashes", "eats", "decapitates", None, "poisons"],
+            ["vaporizes", "disproves", "breaks", "poisons", None]
         ]
 
         p1.enterName()
@@ -51,8 +51,10 @@ class Round:
         adjective = self.getResultAdjective(p1, p2)
         result = self.compareChoices(p1, p2)
         string_result = self.getResultAsString(result)
-        if self.rules[p1.toNumericalChoice()] != self.rules[p2.toNumericalChoice()]:
+        if result > 0:
             print(f"{p1.choice} {adjective} {p2.choice}")
+        elif result < 0:
+            print(f"{p2.choice} {adjective} {p1.choice}")
         print(f"Round resulted in a {string_result}!")
         if result > 0:
             p1.incrementPoint()
@@ -72,9 +74,6 @@ class Round:
 
     def getResultAdjective(self, p1, p2):
         return self.adjectives[p1.toNumericalChoice()][p2.toNumericalChoice()]
-        
-        #adjective = ["crushes", "smashes", "covers", "disproves", "cuts", "decapitates", "poisons", "eats", "breaks", "vaporizes"]
-
 
 class Game:
     def __init__(self):
