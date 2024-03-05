@@ -6,7 +6,7 @@ class Player:
 
     def choose(self):
         self.choice = input(f"{self.name}, select rock, paper, scissors, lizard, or Spock: ")
-        print(f"{self.name} selects {self.choice}.")
+        print(f"{self.name} selects one of the choices...")
 
     def enterName(self):
         self.name = input("Enter your name: ")
